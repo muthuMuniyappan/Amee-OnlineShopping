@@ -15,13 +15,15 @@
 <head>
 
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 
 <title>Online Shopping - ${title}</title>
-<script>
+<script>  
 
 	window.menu = '${title}';
 	
@@ -79,6 +81,11 @@
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
 			
+			<!-- Only Load when the user click a manage products to view -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>
+			
 		</div> 
 
  
@@ -88,6 +95,9 @@
 		<!-- jQuery -->
 		<script src="${js}/jquery.js"></script>
 		
+		<!-- jQuery validator-->
+		<script src="${js}/jquery.validate.js"></script>
+		
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
 		
@@ -96,6 +106,9 @@
 		
 		<!-- DataTable Bootstrap -->
 		<script src="${js}/dataTables.bootstrap.js"></script>
+		
+		<!-- BootBox script -->
+		<script src="${js}/bootbox.min.js"></script>
 
 		<!-- Self coded Java Script -->
 		<script src="${js}/myapp.js"></script>

@@ -1,3 +1,8 @@
+	
+
+// Category Table
+==================================
+
 CREATE TABLE category(
 id IDENTITY,
 name VARCHAR(50),
@@ -12,8 +17,9 @@ CONSTRAINT pk_category_id PRIMARY KEY (id)
 INSERT INTO category (name, description, image_url, is_active) VALUES ('Televison', 'This is some about Televisons', 'CAT_1.png', true);
 INSERT INTO category (name, description, image_url, is_active) VALUES ('Laptop', 'This is some about Laptops', 'CAT_2.png', true);
 INSERT INTO category (name, description, image_url, is_active) VALUES ('Mobiles', 'This is some about Mobiles', 'CAT_3.png', true);
-
-
+=====================================================================================================================================
+//User_Details Table
+=====================
 CREATE TABLE user_details(
 id IDENTITY,
 first_name VARCHAR(50),
@@ -23,6 +29,8 @@ enabled BOOLEAN,
 email VARCHAR(100),
 password VARCHAR(50),
 contact_number VARCHAR(15),
+
+
  
 CONSTRAINT pk_user_id PRIMARY KEY (id)
 );
@@ -38,8 +46,9 @@ values ('Amee','muthu','SUPPLIER', true, 'a@gmail.com', '123', '9999999999');
 insert into user_details
 	(first_name, last_name, role, enabled, email, password,contact_number)
 values ('muthu','Amee','SUPPLIER', true, 'm@gmail.com', '123', '8888888888');
-
- 
+======================================================================================================================
+//Product Table
+================== 
 CREATE TABLE product (
 	id IDENTITY,
 	code VARCHAR(20),
@@ -72,3 +81,40 @@ VALUES ('PRDMNO123PQRX', ' Macbook Pro', 'apple', 'This is one of the best lapto
 
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABCXYZDEFX', 'Dell Latitude E6510', 'dell', 'This is one of the best laptop series from dell that can be used!', 48000, 5, true, 2, 3, 0, 0 );
+=============================================================================================================
+//Address Table
+===============
+
+CREATE TABLE address(
+id IDENTITY,
+user_id int,
+address_line_one varchar(100),
+address_line_two varchar(100),
+city varchar(20),
+state varchar(20),
+country varchar(20),
+postal_code varchar(10),
+is_billing boolean,
+is_shopping boolean,
+
+CONSTRAINT pk_address_id PRIMARY KEY (id),
+CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_details(id)
+);
+=================================================================================================================
+// Cart Table
+==============
+CREATE TABLE cart (
+	id IDENTITY,
+	user_id int,
+	grand_total DECIMAL(10,2),
+	cart_lines int,
+	
+	CONSTRAINT pk_cart_id PRIMARY KEY (id),
+	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id)
+);
+===============================================================================================================
+
+
+
+
+
