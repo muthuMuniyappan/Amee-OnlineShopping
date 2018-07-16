@@ -88,7 +88,9 @@ public class ManagementController {
 
 		if (mProduct.getId() == 0) {
 			new ProductValidator().validate(mProduct, results);
-		} else {
+		} 
+		else
+			{
 			if (!mProduct.getFile().getOriginalFilename().equals("")) {
 				new ProductValidator().validate(mProduct, results);
 			}
@@ -121,14 +123,17 @@ public class ManagementController {
 		return "redirect:/manage/products?operation=product";
 	}
 	
-	@RequestMapping(value= "/product/{id}/activation", method=RequestMethod.GET)
+	@RequestMapping(value= "/product/{id}/activation", method=RequestMethod.POST)
 	@ResponseBody
 	public String handleProductActivation(@PathVariable int id) {	
 		//is going to fetch the product from the database
 		Product product= productDAO.get(id);
+		
 		boolean isActive= product.isActive();
+		
 		//activate and deactivate based on the value of activate field 
-		product.setActive(!product.isActive());
+		product.setActive(!isActive);
+		
 		// updating the product
 		productDAO.update(product);		
 		 

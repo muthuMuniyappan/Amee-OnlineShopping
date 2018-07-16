@@ -54,7 +54,7 @@
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="${contextroot}/home">Online Shopping</a>
+					<a class="navbar-brand" href="${contextRoot}/home">Online Shopping</a>
 				</div>
 			</div>
 		</nav>
@@ -65,8 +65,7 @@
 
 			<div class="container">
 			
-				<!-- this will be displayed if the credential are wrong  -->
-				
+				<!-- this will be displayed if the credential are wrong  -->				
 				<c:if test="${not empty message}">
 					<div class="row">
 						<div class="col-md-offset-3 col-md-6">
@@ -74,14 +73,15 @@
 						</div>
 					</div>
 				</c:if>
-
-				<%-- <c:if test="${not empty logout}">
+				
+				<!-- this will be displayed only when user has logged out  -->
+				<c:if test="${not empty logout}">
 					<div class="row">
 						<div class="col-xs-12 col-md-offset-2 col-md-8">
 							<div class="alert alert-success">${logout}</div>
 						</div>
 					</div>
-				</c:if>  --%>
+				</c:if>  
 				
 				<div class="row">
 

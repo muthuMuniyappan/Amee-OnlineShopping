@@ -3,7 +3,6 @@
 import java.util.List;
 
 import com.niit.shoppingbackend.dto.Address;
-import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.User;
 
 public interface UserDAO {
@@ -23,7 +22,6 @@ public interface UserDAO {
 	Address getBillingAddress(User user);
 	List<Address> listShippingAddresses(User user);
 	
-	//add a Cart
-	boolean updateCart(Cart cart);
+	
  
 }

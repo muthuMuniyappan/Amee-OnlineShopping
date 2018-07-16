@@ -171,57 +171,61 @@
 
 		<div class="col-xs-12">
 
-			<div style="overflow: auto">
+			<div class="container-fluid">
 
-				<!-- Product Table for Admin-->
-				<table id="adminProductsTable"
-					class="table table-striped table-bordered">
-					<thead>
-						<tr>
+				<div class="table-resposive">
 
-							<th>Id</th>
+					<!-- Product Table for Admin-->
+					<table id="adminProductsTable"
+						class="table table-striped table-bordered">
+						<thead>
+							<tr>
 
-							<th>&#160;</th>
+								<th>Id</th>
 
-							<th>Name</th>
+								<th>&#160;</th>
 
-							<th>Brand</th>
+								<th>Name</th>
 
-							<th>Quantity</th>
+								<th>Brand</th>
 
-							<th>Unit Price</th>
+								<th>Quantity</th>
 
-							<th>Active</th>
+								<th>Unit Price</th>
 
-							<th>Edit</th>
-						</tr>
+								<th>Active</th>
 
-					</thead>
+								<th>Edit</th>
+							</tr>
+
+						</thead>
 
 
-					<tfoot>
-						<tr>
+						<tfoot>
+							<tr>
 
-							<th>Id</th>
+								<th>Id</th>
 
-							<th>&#160;</th>
+								<th>&#160;</th>
 
-							<th>Name</th>
+								<th>Name</th>
 
-							<th>Brand</th>
+								<th>Brand</th>
 
-							<th>Quantity</th>
+								<th>Quantity</th>
 
-							<th>Unit Price</th>
+								<th>Unit Price</th>
 
-							<th>Active</th>
+								<th>Active</th>
 
-							<th>Edit</th>
-						</tr>
+								<th>Edit</th>
+							</tr>
 
-					</tfoot>
+						</tfoot>
 
-				</table>
+					</table>
+
+				</div>
 
 			</div>
 
@@ -232,7 +236,7 @@
 
 	<div class="modal fade" id="myCategoryModal" role="dialog" tabindex="-1">
 		<div class="modal-dialog" role="document">
-			<div class="content">
+			<div class="modal-content">
 			
 			<!-------------------- Modal Header ------------------->
 				<div class="modal-header">
@@ -272,4 +276,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>  

@@ -27,25 +27,23 @@ last_name VARCHAR(50),
 role VARCHAR(50),
 enabled BOOLEAN,
 email VARCHAR(100),
-password VARCHAR(50),
+password VARCHAR(60),
 contact_number VARCHAR(15),
 
-
- 
 CONSTRAINT pk_user_id PRIMARY KEY (id)
 );
 
 insert into user_details
 	(first_name, last_name, role, enabled, email, password,contact_number)
-values ('muthu','Amee','ADMIN', true, 'Amee@gmail.com', 'admin', '9999988888');
+values ('muthu','Amee','ADMIN', true, 'Amee@gmail.com', '$2a$10$57ioRb8cbsj8DjUzVKHuJuFtwffz40aAdhhL2alM2PsJu3gD0AO6y', '9999988888');
 
 insert into user_details
 	(first_name, last_name, role, enabled, email, password,contact_number)
-values ('Amee','muthu','SUPPLIER', true, 'a@gmail.com', '123', '9999999999');
+values ('Amee','muthu','SUPPLIER', true, 'a@gmail.com', '$2a$10$7UXVqNEI0.5qaUDRDSdo2uyYKaKdsmdbbQDrGk25cjfOTVl2rl.8G', '9999999999');
 
 insert into user_details
 	(first_name, last_name, role, enabled, email, password,contact_number)
-values ('muthu','Amee','SUPPLIER', true, 'm@gmail.com', '123', '8888888888');
+values ('muthu','Amee','SUPPLIER', true, 'm@gmail.com', '$2a$10$cBzLSJhinYG.zmBnvMIMguOOhPi7DEMJ9J6P7CWeTqij7KtiHalhu', '8888888888');
 ======================================================================================================================
 //Product Table
 ================== 
@@ -113,6 +111,21 @@ CREATE TABLE cart (
 	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id)
 );
 ===============================================================================================================
+// cartLines
+============
+
+CREATE TABLE cart_line(
+ id IDENTITY,
+ cart_id int,
+ total decimal(10,2),
+ product_id int,
+ product_count int,
+ buying_price decimal(10,2),
+ is_available boolean, 
+ CONSTRAINT pk_cartline_id PRIMARY KEY (id),
+ CONSTRAINT fk_cartline_card_id FOREIGN KEY (cart_id) REFERENCES cart(id),
+ CONSTRAINT fk_cartline_product_id FOREIGN KEY (product_id) REFERENCES product(id)
+);
 
 
 

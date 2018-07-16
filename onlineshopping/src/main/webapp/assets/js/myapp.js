@@ -107,21 +107,23 @@ $(function() {
 								bSortable : false,
 								mRender : function(data, type, row) {
 									var string = '';
-									string += '<a href="'
-											+ window.contextRoot
-											+ '/show/'
-											+ data
-											+ '/product" class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open"> </span>  </a> &#160;';
-
+									string += '<a href="'+ window.contextRoot+ '/show/'+ data+ '/product" class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open"> </span>  </a> &#160;';
+									
+									if(userRole=='ADMIN'){
+										string += '<a href="'+ window.contextRoot+ '/manage/'+data+'/product" class="btn btn-warning"> <span class="glyphicon glyphicon-pencil"> </span> </a>';
+									}
+									
+									else{
 									if (row.quantity < 1) {
 
 										string += '<a href="javascript:void(0)" class="btn btn-success disabled"> <span class="glyphicon glyphicon-shopping-cart"> </span> </a>';
-									} else {
-										string += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add/'
-												+ data
-												+ '/product" class="btn btn-success"> <span class="glyphicon glyphicon-shopping-cart"> </span> </a>';
+									} 
+									else 
+									{																		
+																		
+										string += '<a href="'+ window.contextRoot+ '/cart/add/'+ data + '/product" class="btn btn-success"> <span class="glyphicon glyphicon-shopping-cart"> </span> </a>';
+																		
+									}
 									}
 									return string;
 								}
@@ -147,8 +149,8 @@ $(function() {
 					function() {
 
 						var checkbox = $(this);
-						var checked = checkbox.prop('check');
-						var dMsg = (this.checked) ? 'You want to activate the product?'
+						var checked = checkbox.prop('checked');
+						var dMsg = (checked)? 'You want to activate the product?'
 								: 'You want to de-activite the product?';
 						var value = checkbox.prop('value');
 						bootbox
@@ -159,7 +161,7 @@ $(function() {
 									callback : function(confirmed) {
 
 										if (confirmed) {
-											console.log(value);
+											 console.log(value);
 											bootbox
 													.alert({
 														size : 'medium',
@@ -168,11 +170,11 @@ $(function() {
 																+ value
 													});
 										} else {
-											checkbox.prop('checked', !checked)
+											checkbox.prop('checked', !checked);
 										}
 									}
 
-								})
+								});
 
 					});
 	// --------------------------------------------------------------
@@ -245,13 +247,13 @@ $(function() {
 								data : 'active',
 								mRender : function(data, type, row) {
 									var string = '';
+									
 									string += '<label class="switch">';
 									if (data) {
-										string += '<input type="checkbox" checked="checked" value="'
-												+ row.id + '" />';
-									} else {
-										string += '<input type="checkbox" value="'
-												+ row.id + '" />';
+										string += '<input type="checkbox" checked="checked" value="'+ row.id + '" />';
+									} 
+									else {
+										string += '<input type="checkbox" value="'+ row.id + '" />';
 									}
 
 									string += '<div class="slider"></div></label>';
@@ -260,7 +262,7 @@ $(function() {
 							},
 
 							{
-								data : 'id',
+								data : 'id', 
 								bSortable : false,
 								mRender : function(data, type, row) {
 									var string = '';
@@ -268,7 +270,7 @@ $(function() {
 									string += '<a href="'
 											+ window.contextRoot
 											+ '/manage/'
-											+ data
+								  			+ data
 											+ '/product" class="btn btn-warning">';
 									string += '<span class="glyphicon glyphicon-pencil"></span></a>';
 
@@ -313,39 +315,30 @@ $(function() {
 																		+ value
 																		+ '/activation';
 
-																$
-																		.post(
-																				activationUrl,
-																				function(
-																						data) {
-																					bootbox
-																							.alert({
-																								size : 'medium',
-																								title : 'Information',
-																								message : data
-																							});
+					$.post(activationUrl,function(data) {
+						bootbox.alert({
+							size : 'medium',
+							title : 'Information',
+							message : data
+							});
+					});
 
-																				});
+							} 
+							else {
+								checkbox.prop('checked',!checked)
+								}
+									}
+								})
 
-															} else {
-																checkbox
-																		.prop(
-																				'checked',
-																				!checked)
-															}
-														}
-
-													})
-
-										});
+							});
 					}
 
 				});
 	}
 
 	// -------------------------------------------------------------
-
-	// validation code for category
+ 
+ 	// validation code for category
 
 	var $categoryForm = $('#categoryForm');
 
