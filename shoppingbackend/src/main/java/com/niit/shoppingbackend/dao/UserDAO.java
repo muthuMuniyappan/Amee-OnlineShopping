@@ -18,10 +18,11 @@ public interface UserDAO {
 	//--------------
 	//Address getBillingAddress(User userId);
 	//List<Address> listShippingAddresses(User userId);
+
 	
-	Address getBillingAddress(User user);
-	List<Address> listShippingAddresses(User user);
-	
-	
+	Address getBillingAddress(int userId);
+	List<Address> listShippingAddresses(int userId);
+
+		
  
 }

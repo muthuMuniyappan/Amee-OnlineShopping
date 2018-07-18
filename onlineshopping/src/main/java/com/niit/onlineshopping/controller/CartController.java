@@ -1,5 +1,7 @@
 package com.niit.onlineshopping.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,8 @@ import com.niit.onlineshopping.service.CartService;
 @Controller
 @RequestMapping(value="/cart")
 public class CartController {
+	
+	private final static Logger logger= LoggerFactory.getLogger(CartController.class); 
 	
 	@Autowired
 	private CartService cartService;
@@ -42,6 +46,10 @@ public class CartController {
 				 mv.addObject("message", "CartLine has reahed the maximum count!");
 				 break;
 				 
+			 case "modified":
+					mv.addObject("message", "One or more items inside cart has been modified!");
+					break;
+				 
 			 case "unavailable":
 				 mv.addObject("message", "Product quantity is not available!");
 				 break;
@@ -53,16 +61,21 @@ public class CartController {
 			 }		 
 			 
 		 }
-		 
-		 mv.addObject("title", "User Cart");
-		 mv.addObject("userClickShowCart", true);
-		 mv.addObject("cartLines", cartService.getCartLines()); 
-		 
-		 return mv;
-	 }
+		 else {
+				String response = cartService.validateCartLine();
+				if(response.equals("result=modified")) {					
+					mv.addObject("message", "One or more items inside cart has been modified!");
+				}
+			}		
+		 	
+		 	mv.addObject("title", "User Cart");
+		 	mv.addObject("userClickShowCart", true);
+			mv.addObject("cartLines", cartService.getCartLines());
+			return mv;			
+		}
 	 
 	 
-	 @RequestMapping("/{cartLineId}/update")
+	 @RequestMapping(value="/{cartLineId}/update")
 	 public String updateCart(@PathVariable int cartLineId,@RequestParam int count) {
 		 
 		 String response= cartService.manageCartLine(cartLineId, count);		 
@@ -70,7 +83,7 @@ public class CartController {
 	 }
 	 
 	 
-	 @RequestMapping("/{cartLineId}/delete")
+	 @RequestMapping(value="/{cartLineId}/delete")
 	 public String updateCart(@PathVariable int cartLineId) {
 		 
 		 String response= cartService.deleteCartLine(cartLineId);		 
@@ -78,7 +91,7 @@ public class CartController {
 	 }
 	 
 	 
-	 @RequestMapping("/add/{productId}/product")
+	 @RequestMapping(value="/add/{productId}/product")
 	 public String addCart(@PathVariable int productId) {
 		 
 		 String response= cartService.addCartLine(productId);		 
@@ -86,6 +99,18 @@ public class CartController {
 	 }
 	 
 	 
-	 
-	 
+	 /* after validating it redirect to checkout
+		 * if result received is success proceed to checkout 
+		 * else display the message to the user about the changes in cart page
+		 * */	
+		@RequestMapping(value="/validate")
+		public String validateCart() {	
+			String response = cartService.validateCartLine();
+			if(!response.equals("result=success")) {
+				return "redirect:/cart/show?"+response;
+			}
+			else {
+				return "redirect:/cart/checkout";
+			}
+		}		 
 }

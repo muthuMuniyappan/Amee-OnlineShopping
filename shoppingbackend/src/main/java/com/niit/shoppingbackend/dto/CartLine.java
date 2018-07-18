@@ -1,5 +1,7 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +12,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cart_line")
-public class CartLine {	
+public class CartLine implements Serializable{	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/* 
 	 *  Private property field
 	 */

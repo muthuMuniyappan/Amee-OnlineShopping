@@ -210,9 +210,9 @@ public class UserTestCase {
 		user=userDAO.getByEmail("mAmee@gmail.com");
 		
 		assertEquals("Failed to fetch the list of Addresses and size does not match",2,
-						userDAO.listShippingAddresses(user).size());
+						userDAO.listShippingAddresses(user.getId()).size());
 		
 		assertEquals("Failed to feych the Billing Addresses and size does not match","Coimbatore",
-				userDAO.getBillingAddress(user).getCity());
+				userDAO.getBillingAddress(user.getId()).getCity());
 	}
 }

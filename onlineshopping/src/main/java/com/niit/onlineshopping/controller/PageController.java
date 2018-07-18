@@ -129,12 +129,13 @@ public class PageController {
 		return mv;		
 	}
 	
+	
 	/*having similar mapping to our flow id*/
 	@RequestMapping(value = { "/register" })
 	public ModelAndView register() {
 
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "About Us");
+		//mv.addObject("title", "About Us");
 		
 		return mv;
 	}
@@ -158,6 +159,7 @@ public class PageController {
 		mv.addObject("title", "Login");		
 		return mv;
 	}
+	
 	
 	/*access denied page*/
 	@RequestMapping(value = { "/access-denied" })

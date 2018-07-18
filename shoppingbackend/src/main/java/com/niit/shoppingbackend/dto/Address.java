@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-
 public class Address implements Serializable{
 	
 	/**

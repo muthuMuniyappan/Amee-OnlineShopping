@@ -1,3 +1,4 @@
+<c:set var="availableCount" value="${userModel.cart.cartLines}" />
 
 <div class="container">
 
@@ -31,6 +32,9 @@
 		<tbody>
 		
 		<c:forEach items="${cartLines}" var="cartLine">
+		<c:if test="${cartLine.available == false}">
+						<c:set var="availableCount" value="${availableCount - 1}"/>
+		</c:if>
 		
 		<tr>
 				<td data-th="Product">
@@ -42,9 +46,11 @@
 						<div class="col-sm-10">
 							<h4 class="nomargin">${cartLine.product.name }
 							
-							<c:if test="${cartLine.available == false }"> 							
+							<c:if test="${cartLine.available == false }"> 
+														
 							<strong class="unavailable">(Not Available)</strong>							
 							</c:if>
+							
 						 	</h4>
 							<p>Brand - ${cartLine.product.brand}</p>
 							<p>Description - ${cartLine.product.description}</p>
@@ -57,20 +63,25 @@
 					class="form-control text-center" value="${cartLine.productCount}">
 					</td>
 				<td data-th="Subtotal" class="text-center">&#8377; ${cartLine.total} </td>
-				<td class="actions" data-th="">
+				<td class="actions" data-th="">			
+					
+				<c:if test="${cartLine.available == true}">
 					<button type="button" name="refreshCart" value="${cartLine.id}" class="btn btn-info btn-sm">
 						<span class="glyphicon glyphicon-refresh"></span>
 					</button>
+					</c:if>
+					
 					<a href="${contextRoot}/cart/${cartLine.id}/delete"class="btn btn-danger btn-sm">
 						<span class="glyphicon glyphicon-trash"></span>
 					</a>
 				</td>
 			</tr>		
 		
-		</c:forEach>
-		
+		</c:forEach>	
 			
 		</tbody>
+		
+		
 		<tfoot>
 			<tr class="visible-xs">
 				<td class="text-center"><strong>Total: &#8377; ${userModel.cart.grandTotal} </strong></td>
@@ -78,11 +89,21 @@
 			<tr>
 				<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><span
 						class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
+						
 				<td colspan="2" class="hidden-xs"></td>
+				
 				<td class="hidden-xs text-center"><strong>Total: &#8377; ${userModel.cart.grandTotal}</strong></td>
-				<td><a href="#" class="btn btn-success btn-block">Checkout
-						<span class="glyphicon glyphicon-chevron-right"></span>
-				</a></td>
+				
+				<c:choose>
+					<c:when test="${availableCount != 0}">							
+						<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>								
+					</c:when>		
+												
+					<c:otherwise>
+								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled"><strike>Checkout <span class="glyphicon glyphicon-chevron-right"></span></strike></a></td>
+					</c:otherwise>
+				</c:choose>					
+
 			</tr>
 		</tfoot>
 	</table>
