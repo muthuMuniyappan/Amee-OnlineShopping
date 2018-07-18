@@ -48,6 +48,7 @@
 </head>
 
 <body>
+ 
 	<div class="wrapper">
 
 		<!-- Navigation -->
@@ -86,9 +87,15 @@
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
 			
+			<!-- Only Load when the user click a Cart to view -->
+			<c:if test="${userClickShowCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
+			
 		</div> 
 
  
+ 	
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 

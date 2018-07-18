@@ -68,6 +68,6 @@ public class CartLineTestCase {
 		assertEquals("Failed to update the cart", true, cartLineDAO.updateCart(cart));		
 	
 	
-	
+	}
 	
 }

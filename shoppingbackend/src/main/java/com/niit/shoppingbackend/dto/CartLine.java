@@ -10,12 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="cart_line")
-public class CartLine {
-	
-	
-	
-	
-	
+public class CartLine {	
 	
 	
 	/* 
