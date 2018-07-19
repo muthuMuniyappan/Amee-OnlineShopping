@@ -382,7 +382,23 @@ $(function() {
 	}
 
 	// -----------------------------------------------------------------------
+	// jQuery Validation Code
 
+	//methods required for validation
+	
+	function errorPlacement(error, element) {
+		// Add the 'help-block' class to the error element
+		error.addClass("help-block");
+		
+		// add the error label after the input element
+		error.insertAfter(element);
+		
+		
+		// add the has-feedback class to the
+		// parent div.validate in order to add icons to inputs
+		element.parents(".validate").addClass("has-feedback");	
+
+	}	
 	// -------------------------------------------------------------
 
 	// validation code for login

@@ -94,14 +94,14 @@
 				
 				<td class="hidden-xs text-center"><strong>Total: &#8377; ${userModel.cart.grandTotal}</strong></td>
 				
-				<c:choose>
-					<c:when test="${availableCount != 0}">							
+				 <c:choose>
+					<c:when test="${availableCount != 0}">	 						
 						<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>								
-					</c:when>		
+					 </c:when>		
 												
 					<c:otherwise>
 								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled"><strike>Checkout <span class="glyphicon glyphicon-chevron-right"></span></strike></a></td>
-					</c:otherwise>
+					 </c:otherwise>
 				</c:choose>					
 
 			</tr>
@@ -109,8 +109,7 @@
 	</table>
 
 
-
-		</c:when>
+	</c:when>
 
 		<c:otherwise>
 

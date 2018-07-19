@@ -41,8 +41,7 @@ public class CartService {
 	}
 
 
-	public String manageCartLine(int cartLineId, int count) {
-		
+	public String manageCartLine(int cartLineId, int count) {		
 		
 		//fetch the cart line
 		CartLine cartLine= cartLineDAO.get(cartLineId);
@@ -65,7 +64,7 @@ public class CartService {
 			cartLine.setTotal(product.getUnitPrice() * count);			
 			cartLineDAO.update(cartLine);			
 			Cart cart= this.getCart();			
-			cart.setGrandTotal(cart.getGrandTotal()- oldTotal + cartLine.getTotal());			
+			cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());			
 			cartLineDAO.updateCart(cart);
 			
 			return "result=updated";

@@ -89,7 +89,7 @@ public class CheckoutHandler {
 
 		String transitionValue = "success";
 		
-		//logger.info(String.valueOf(shippingId));
+		logger.info(String.valueOf(shippingId));
 		
 		Address shipping = userDAO.getBillingAddress(shippingId);		
 		
