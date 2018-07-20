@@ -57,12 +57,18 @@
 						
 						<div class="jumbotron">
 						
-							<h2>${errorTitle}</h2>
+							<h1>Please contact your administrator!</h1>
 							<hr/>
 						
 							<blockquote style="word-wrap:break-word">
 								
-								${errorDescription}
+								${flowExecutionException}
+							
+							</blockquote>						
+
+							<blockquote style="word-wrap:break-word">
+								
+								${rootCauseException}
 							
 							</blockquote>						
 						

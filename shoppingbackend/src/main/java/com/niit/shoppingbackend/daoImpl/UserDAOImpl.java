@@ -26,7 +26,7 @@ public class UserDAOImpl implements UserDAO {
 			
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;	
 			
 		}
@@ -97,6 +97,43 @@ public class UserDAOImpl implements UserDAO {
 		catch(Exception e) {
 			e.printStackTrace();
 		return null;
+		}
+	}
+
+	@Override
+	public User get(int id) {
+		try {			
+			return sessionFactory.getCurrentSession().get(User.class, id);			
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+	
+	
+
+	@Override
+	public boolean updateAddress(Address address) {
+		try {			
+			sessionFactory.getCurrentSession().update(address);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
+	}
+	
+	
+
+	@Override
+	public Address getAddress(int addressId) {
+		try {			
+			return sessionFactory.getCurrentSession().get(Address.class, addressId);			
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
 		}
 	}
 

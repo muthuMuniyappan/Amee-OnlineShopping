@@ -37,7 +37,7 @@ public class CartService {
 	//returns the entire cart lines
 	public List<CartLine> getCartLines(){		
 		
-		return cartLineDAO.list(this.getCart().getId());
+		return cartLineDAO.list(getCart().getId());
 	}
 
 

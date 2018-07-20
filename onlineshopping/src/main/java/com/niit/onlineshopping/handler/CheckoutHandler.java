@@ -45,7 +45,7 @@ public class CheckoutHandler {
 	public CheckoutModel init(String name) throws Exception{
 
 		User user = userDAO.getByEmail(name);
-		CheckoutModel checkoutModel = null;	
+		CheckoutModel checkoutModel = new CheckoutModel();	
 
 		if(user!=null) {
 			checkoutModel = new CheckoutModel();
@@ -89,9 +89,9 @@ public class CheckoutHandler {
 
 		String transitionValue = "success";
 		
-		logger.info(String.valueOf(shippingId));
+		//logger.info(String.valueOf(shippingId));
 		
-		Address shipping = userDAO.getBillingAddress(shippingId);		
+		Address shipping = userDAO.getAddress(shippingId);		
 		
 		checkoutModel.setShipping(shipping);
 		

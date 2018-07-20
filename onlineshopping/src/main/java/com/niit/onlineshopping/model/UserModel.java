@@ -17,13 +17,7 @@ public class UserModel implements Serializable{
 	private String role;
 	private Cart cart;	
 	
-	
-	@Override
-	public String toString() {
-		return "UserModel [id=" + id + ", fullName=" + fullName + ", email=" + email + ", role=" + role + ", cart="
-				+ cart + "]";
-	}
-	
+			
 	
 	public int getId() {
 		return id;

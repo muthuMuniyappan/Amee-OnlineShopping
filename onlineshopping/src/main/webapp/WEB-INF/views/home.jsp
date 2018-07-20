@@ -76,13 +76,15 @@
                             <h5>{{product.name}}</h5>
                             <hr/>
                             <div class="caption">
-                                <h4 class="pull-right">&#8377; {{product.unitPrice}}</h4>
-                                <p>{{product.description}}</p>
+                                <h4 class="pull-left">&#8377; {{product.unitPrice}}</h4>
+                                <p> {{product.description}}</p> <br>
                                 <a ng-href="${contextRoot}/show/{{product.id}}/product" class="btn btn-primary pull-right">View</a>
                             </div>
                         </div>
                         
                     </div>
+                    
+                    <hr/>
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4>Checkout more products!</h4>
@@ -91,6 +93,7 @@
                     </div>
 
                 </div>
+                <hr/>
 				
 				<div class="row">
                 	<div class="col-xs-12">
@@ -106,12 +109,14 @@
                             <h5>{{product.name}}</h5>
                             <hr/>
                             <div class="caption">
-                                <h4 class="pull-right">&#8377; {{product.unitPrice}}</h4>
-                                <p>{{product.description}}</p>
+                                <h4 class="pull-left">&#8377; {{product.unitPrice}}</h4>
+                                <p>{{product.description}}</p> <br>
                                 <a ng-href="${contextRoot}/show/{{product.id}}/product" class="btn btn-primary pull-right">View</a>
                             </div>
                         </div>
                     </div>
+                    <hr/>
+                    <br>
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <h4>Checkout more products!</h4>

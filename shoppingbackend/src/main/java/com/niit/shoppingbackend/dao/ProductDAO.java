@@ -12,7 +12,7 @@ public interface ProductDAO {
 	boolean update(Product product);
 	boolean delete(Product product);
 	
-	/*List<Product> getProductsByParam(String param, int count);*/
+	List<Product> getProductsByParam(String param, int count);
 	
 	// Business Method
 	List<Product> listActiveProducts();

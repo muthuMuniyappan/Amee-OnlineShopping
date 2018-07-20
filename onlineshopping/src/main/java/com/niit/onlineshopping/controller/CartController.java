@@ -84,7 +84,7 @@ public class CartController {
 	 
 	 
 	 @RequestMapping(value="/{cartLineId}/delete")
-	 public String updateCart(@PathVariable int cartLineId) {
+	 public String deleteCart(@PathVariable int cartLineId) {
 		 
 		 String response= cartService.deleteCartLine(cartLineId);		 
 		 return "redirect:/cart/show?"+response;	 

@@ -7,85 +7,54 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class Address implements Serializable{
-	
+public class Address implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * private property field
-	 */ 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	/*------------------------*/
-	@ManyToOne
-	private User user;
 	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	/*-------------------------------*/	
-	@Column(name="address_line_one")
-	@NotBlank(message="Please enter address line one!")
+	@NotBlank(message = "Please enter address line one!")
+	@Column(name = "address_line_one")
 	private String addressLineOne;
 	
-	@Column(name="address_line_two")
-	@NotBlank(message="Please enter address line two!")
+	@NotBlank(message = "Please enter address line two!")	
+	@Column(name = "address_line_two")
 	private String addressLineTwo;
 	
-	@NotBlank(message="Please enter city!")
+	@NotBlank(message = "Please enter City!")	
 	private String city;
 	
-	@NotBlank(message="Please enter state!")
+	@NotBlank(message = "Please enter State!")	
 	private String state;
 	
-	@NotBlank(message="Please enter country!")
+	@NotBlank(message = "Please enter country!")	
 	private String country;
 	
-	@NotBlank(message="Please enter PIN code!")
-	@Column(name="postal_code")
+	@Column(name ="postal_code")
+	@NotBlank(message = "Please enter Postal Code!")	
 	private String postalCode;
 	
+	@Column(name="is_shipping")
 	private boolean shipping;
+	
+	@Column(name="is_billing")
 	private boolean billing;
-	
-	// toString() method	
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", userId=" + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
-				+ addressLineTwo + ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode="
-				+ postalCode + ", shipping=" + shipping + ", billing=" + billing + "]";
-	}
-	
-	//Getter and setter	
 	
 	
 	public int getId() {
 		return id;
-	}		
-
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}	
-	
 	public String getAddressLineOne() {
 		return addressLineOne;
 	}
@@ -104,6 +73,12 @@ public class Address implements Serializable{
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getCountry() {
 		return country;
 	}
@@ -116,20 +91,34 @@ public class Address implements Serializable{
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
+	public boolean isBilling() {
+		return billing;
+	}
+	public void setBilling(boolean billing) {
+		this.billing = billing;
+	}
+	
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode=" + postalCode
+				+ ", billing=" + billing + "]";
+	}
+		
+	@Column(name = "user_id")
+	private int userId;
 	public boolean isShipping() {
 		return shipping;
 	}
 	public void setShipping(boolean shipping) {
 		this.shipping = shipping;
 	}
-	public boolean isBilling() {
-		return billing;
+	public int getUserId() {
+		return userId;
 	}
-	public void setBilling(boolean billing) {
-		this.billing = billing;
-	}	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	
 	
 }
-
-
-
