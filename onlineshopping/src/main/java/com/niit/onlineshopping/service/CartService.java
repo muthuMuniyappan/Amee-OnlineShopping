@@ -28,7 +28,7 @@ public class CartService {
 	
 	
 	//returns the cart of the user who has logged in
-	private Cart getCart() {		
+	public Cart getCart() {		
 		
 	return ((UserModel)session.getAttribute("userModel")).getCart();	
 	}	

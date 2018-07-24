@@ -47,7 +47,7 @@ public class Cart implements Serializable{
 	public String toString() {
 		return "Cart [id=" + id + ", userId=" + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines
 				+ "]";
-	}
+ 	}
 
 	// Setting Getter and Setter 
 	public int getId() {

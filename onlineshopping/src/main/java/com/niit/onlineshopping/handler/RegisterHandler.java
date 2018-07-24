@@ -93,7 +93,7 @@ public class RegisterHandler {
 		
 		// getting Address
 		Address billing= model.getBilling();
-		billing.setUserId(user.getId());
+		billing.setId(user.getId());
 		billing.setBilling(true);
 		
 		//save the address

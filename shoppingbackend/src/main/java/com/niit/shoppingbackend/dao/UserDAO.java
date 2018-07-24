@@ -11,22 +11,20 @@ public interface UserDAO {
 	User getByEmail(String email);
 	User get(int id);
 	
-	boolean addUser(User user);
-	
-	
-	
+	boolean addUser(User user);	
 	
 	/* Alternative*/
 	//--------------
-	//Address getBillingAddress(User userId);
-	//List<Address> listShippingAddresses(User userId);
-
+	//Address getBillingAddress(int userId);
+	//List<Address> listShippingAddresses(int userId);
+	
 	//add an Address
 	boolean addAddress(Address address);
 	boolean updateAddress(Address address);
 	Address getAddress(int addressId);		
-	Address getBillingAddress(int userId);
-	List<Address> listShippingAddresses(int userId);
+	Address getBillingAddress(User user);
+	List<Address> listShippingAddresses(User user);
+
 
 		
  

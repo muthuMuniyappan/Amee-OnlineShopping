@@ -1,4 +1,4 @@
-package com.niit.shoppingbackend.test;
+ package com.niit.shoppingbackend.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -204,15 +204,16 @@ public class UserTestCase {
 		assertEquals("Failed to add Shipping", true, userDAO.addAddress(address));			
 	}*/
 	
-	@Test
+	@Test 
 	public void testGetAddresses() {
 		
 		user=userDAO.getByEmail("mAmee@gmail.com");
 		
 		assertEquals("Failed to fetch the list of Addresses and size does not match",2,
-						userDAO.listShippingAddresses(user.getId()).size());
+						userDAO.listShippingAddresses(user).size());
 		
 		assertEquals("Failed to feych the Billing Addresses and size does not match","Coimbatore",
-				userDAO.getBillingAddress(user.getId()).getCity());
+				userDAO.getBillingAddress(user).getCity());
 	}
 }
+ 
