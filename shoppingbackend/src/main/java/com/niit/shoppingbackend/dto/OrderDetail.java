@@ -52,8 +52,6 @@ public class OrderDetail implements Serializable {
 	@Column(name="order_date")
 	private Date orderDate;
 	
-	
-	
 	public Date getOrderDate() {
 		return orderDate;
 	}

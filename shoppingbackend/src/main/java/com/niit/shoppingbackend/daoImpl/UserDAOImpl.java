@@ -11,92 +11,90 @@ import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.User;
 
+
 @Repository("userDAO")
 @Transactional
 public class UserDAOImpl implements UserDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public boolean addUser(User user) {
+	public User getByEmail(String email) {
+		String selectQuery = "FROM User WHERE email = :email";
 		try {
-			sessionFactory.getCurrentSession().persist(user);
-			return true;
-			
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,User.class)
+						.setParameter("email",email)
+							.getSingleResult();
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;	
-			
+		catch(Exception ex) {
+			return null;
+		}
+							
+	}
+
+	@Override
+	public boolean addUser(User user) {
+		try {			
+			sessionFactory.getCurrentSession().persist(user);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
 		}
 	}
 
 	@Override
 	public boolean addAddress(Address address) {
-		try {
-			sessionFactory.getCurrentSession().persist(address);
+		try {			
+			// will look for this code later and why we need to change it
+			sessionFactory.getCurrentSession().persist(address);			
 			return true;
-			
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return false;	
-			
-		}
-	}
-
-	
-
-	@Override
-	public User getByEmail(String email) {
-		String selectQuery= "FROM User WHERE email= :email";
-		try {
-			return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class)
-					.setParameter("email", email)
-						.getSingleResult();			
-		}
-		catch(Exception e) {
-			//e.printStackTrace();
-		return null;
+		catch(Exception ex) {
+			return false;
 		}
 	}
 	
- 
 	@Override
-	public Address getBillingAddress(User user) {
-		String selectQuery="FROM Address WHERE user= :user AND billing= :billing";
+	public boolean updateAddress(Address address) {
+		try {			
+			sessionFactory.getCurrentSession().update(address);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
+	}	
+	
+
+	@Override
+	public List<Address> listShippingAddresses(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND shipping = :isShipping ORDER BY id DESC";
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isShipping", true)
+							.getResultList();
 		
-		try {
-			
-			return sessionFactory.getCurrentSession()
-						.createQuery(selectQuery, Address.class)
-							.setParameter("user", user)
-			 				.setParameter("billing", true)
-								.getSingleResult();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		return null;
-		}
 	}
-	
 
 	@Override
-	public List<Address> listShippingAddresses(User user) {
-		String selectQuery="FROM Address WHERE user= :user AND shipping= :shipping";
-		
-		try {
-			
-			return sessionFactory.getCurrentSession()
-						.createQuery(selectQuery, Address.class)
-							.setParameter("user", user)
-							.setParameter("shipping", true)
-								.getResultList();
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND billing = :isBilling";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isBilling", true)
+						.getSingleResult();
 		}
-		catch(Exception e) {
- 			e.printStackTrace();
-		return null;
+		catch(Exception ex) {
+			return null;
 		}
 	}
 
@@ -110,21 +108,6 @@ public class UserDAOImpl implements UserDAO {
 			return null;
 		}
 	}
-	
-	
-
-	@Override
-	public boolean updateAddress(Address address) {
-		try {			
-			sessionFactory.getCurrentSession().update(address);			
-			return true;
-		}
-		catch(Exception ex) {
-			return false;
-		}
-	}
-	
-	
 
 	@Override
 	public Address getAddress(int addressId) {
@@ -136,6 +119,5 @@ public class UserDAOImpl implements UserDAO {
 			return null;
 		}
 	}
-
 
 }

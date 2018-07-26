@@ -103,7 +103,5 @@ public class CartLine implements Serializable{
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-
-	
 	
 	}

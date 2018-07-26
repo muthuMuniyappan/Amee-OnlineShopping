@@ -73,13 +73,13 @@ public class CheckoutHandler {
 	
 	public List<Address> getShippingAddresses(CheckoutModel model) {
 				
-		List<Address> addresses = userDAO.listShippingAddresses(model.getUser());
+		List<Address> addresses = userDAO.listShippingAddresses(model.getUser().getId());
 		
 		if(addresses.size() == 0) {
 			addresses = new ArrayList<>();
 		}
 
-		addresses.add(addresses.size(), userDAO.getBillingAddress(model.getUser()));			
+		addresses.add(addresses.size(), userDAO.getBillingAddress(model.getUser().getId()));			
 		
 		return addresses;
 		
@@ -89,7 +89,7 @@ public class CheckoutHandler {
 
 		String transitionValue = "success";
 		
-		logger.info(String.valueOf(shippingId));
+		//logger.info(String.valueOf(shippingId));
 		
 		Address shipping = userDAO.getAddress(shippingId);		
 		
@@ -106,7 +106,7 @@ public class CheckoutHandler {
 		
 		// set the user id
 		// set shipping as true
-		shipping.setId(checkoutModel.getUser().getId());
+		shipping.setUserId(checkoutModel.getUser().getId());
 		shipping.setShipping(true);
 		userDAO.addAddress(shipping);
 		
@@ -131,7 +131,7 @@ public class CheckoutHandler {
 		orderDetail.setShipping(checkoutModel.getShipping());
 		
 		// fetch the billing address
-		Address billing = userDAO.getBillingAddress(checkoutModel.getUser());		
+		Address billing = userDAO.getBillingAddress(checkoutModel.getUser().getId());		
 		orderDetail.setBilling(billing);
 
 		List<CartLine> cartLines = checkoutModel.getCartLines();
@@ -164,7 +164,10 @@ public class CheckoutHandler {
 			productDAO.update(product);
 			
 			// delete the cartLine
-			cartLineDAO.delete(cartLine);		
+			cartLineDAO.delete(cartLine);
+			
+
+			
 		}
 		
 		orderDetail.setOrderTotal(orderTotal);
@@ -188,7 +191,8 @@ public class CheckoutHandler {
 		UserModel userModel = (UserModel) session.getAttribute("userModel");
 		if(userModel!=null) {
 			userModel.setCart(cart);
-		}		
+		}
+		
 				
 		return transitionValue;		
 	}

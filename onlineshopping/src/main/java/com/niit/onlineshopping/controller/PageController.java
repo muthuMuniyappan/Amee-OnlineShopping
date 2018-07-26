@@ -33,7 +33,7 @@ public class PageController {
 	private ProductDAO productDAO;
 
 	@RequestMapping(value = { "/", "/home", "/index" })
-	public ModelAndView index() {
+	public ModelAndView index(@RequestParam(name="logout",required=false)String logout) {
 
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
@@ -43,6 +43,10 @@ public class PageController {
 
 		// passing list of categories
 		mv.addObject("categories", categoryDAO.list());
+		
+		if(logout!=null) {
+			mv.addObject("message", "You have successfully logged out!");			
+		}
 
 		mv.addObject("userClickHome", true);
 		return mv;
@@ -135,7 +139,7 @@ public class PageController {
 	public ModelAndView register() {
 
 		ModelAndView mv = new ModelAndView("page");
-		//mv.addObject("title", "About Us");
+		logger.info("Page Controller register called!");
 		
 		return mv;
 	}
@@ -184,7 +188,6 @@ public class PageController {
 		}
 		return "redirect:/login?logout";
 	}
-	
 	
 
 }

@@ -15,15 +15,17 @@ public interface UserDAO {
 	
 	/* Alternative*/
 	//--------------
-	//Address getBillingAddress(int userId);
-	//List<Address> listShippingAddresses(int userId);
-	
-	//add an Address
+	//Address getBillingAddress(User user);
+	//List<Address> listShippingAddresses(User user);
+		
+	//add and update a new Address
+	Address getAddress(int addressId);		
 	boolean addAddress(Address address);
 	boolean updateAddress(Address address);
-	Address getAddress(int addressId);		
-	Address getBillingAddress(User user);
-	List<Address> listShippingAddresses(User user);
+	Address getBillingAddress(int userId);
+	List<Address> listShippingAddresses(int userId);
+
+	
 
 
 		

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,21 +17,10 @@ public class Address implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	/*-----------------------*/
-	@ManyToOne
-	private User user;	
-	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	/*-----------------------------------*/
 	
 	@NotBlank(message = "Please enter address line one!")
 	@Column(name = "address_line_one")
@@ -60,6 +48,9 @@ public class Address implements Serializable {
 	
 	@Column(name="is_billing")
 	private boolean billing;
+	
+	@Column(name = "user_id")
+	private int userId;
 	
 	
 	public int getId() {
@@ -124,7 +115,13 @@ public class Address implements Serializable {
 	}
 	public void setShipping(boolean shipping) {
 		this.shipping = shipping;
-	}	
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
 	
 }

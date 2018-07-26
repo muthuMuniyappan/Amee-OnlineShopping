@@ -9,20 +9,23 @@ import com.niit.shoppingbackend.dto.OrderDetail;
 public interface CartLineDAO {
 	
 	// the common methods
-	public CartLine get(int id);
-	public boolean add(CartLine cartLine);	
+		public List<CartLine> list(int cartId);
+	public CartLine get(int id);	
+	public boolean add(CartLine cartLine);
 	public boolean update(CartLine cartLine);
 	public boolean delete(CartLine cartLine);
-	public List<CartLine> list(int cartId);
 	
-	// other business method to related to the cart lines
+	// other business method to related to CartLines based on cartId and productId
 	public List<CartLine> listAvailable(int cartId);
-	public CartLine getByCartAndProduct(int cartId, int productId);
+	public CartLine getByCartAndProduct(int cartId, int productId);		
+		
+	// updating the cart
+	boolean updateCart(Cart cart);	
 	
-	//update a Cart
-	boolean updateCart(Cart cart);
-	
-	//adding orderDetails
+	// adding order details
 	boolean addOrderDetail(OrderDetail orderDetail);
 
+	
 }
+
+

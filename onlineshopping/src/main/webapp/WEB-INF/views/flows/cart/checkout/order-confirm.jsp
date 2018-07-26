@@ -155,6 +155,7 @@
 		    </div>
 		</div>
 		</div>
-		</div>
+		</div>		 
 		</body>
-<%@include file="../../flows-shared/flows-footer.jsp" %>	
+		
+<%@include file="../../flows-shared/flows-footer.jsp" %>	 
